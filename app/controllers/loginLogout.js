@@ -1,4 +1,4 @@
-
+const jwt = require('jsonwebtoken');
 module.exports.login = function(application, req, res){
     var user = req.body;
 
