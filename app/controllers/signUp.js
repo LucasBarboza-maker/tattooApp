@@ -22,7 +22,6 @@ module.exports.signUp = function(application,req, res){
             res.send('Error in server'+ error);
         }
         
-        res.status(200);
-        res.send(result);
+        res.status(200).send(result);
 	});	
 }
