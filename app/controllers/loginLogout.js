@@ -15,12 +15,19 @@ module.exports.login = function(application, req, res){
             return;
         }
 
+        
         const id = result.id;
         const token = jwt.sign({id}, process.env.SECRET, {
             expiresIn: 300
         });
 
-        res.json({ auth: true, token: token });
+        if(result.length <= 0){
+            res.status(500);
+            res.send("Login error, password or email is wrong");
+            return;
+        }
+
+        res.json({result: result, auth: true, token: token});
         
 
 
