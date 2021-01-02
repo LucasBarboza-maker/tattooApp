@@ -8,6 +8,14 @@ GalleryDAO.prototype.getPhotoId = function(idUser, callback){
 
 }
 
+GalleryDAO.prototype.getPhotoId = function(idTattoo, callback){
+    this._connection.query("select * from  where idTattoo = ?", idTattoo, callback);
+}
+
+GalleryDAO.prototype.deletePhoto  = function(idPhoto, callback){
+    this._connection.query("delete from tattoo where idTattoo = ?", idPhoto, callback);
+}
+
 module.exports = function(){
     return GalleryDAO;
 }
