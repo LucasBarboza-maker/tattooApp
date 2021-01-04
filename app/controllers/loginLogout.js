@@ -15,6 +15,7 @@ module.exports.login = function(application, req, res){
             return;
         }
 
+
         
         const id = result.id;
         const token = jwt.sign({id}, process.env.SECRET, {
@@ -27,7 +28,9 @@ module.exports.login = function(application, req, res){
             return;
         }
 
-        res.json({result: result, auth: true, token: token});
+        console.log(result);
+
+        res.json({idUser: result[0].IdUser, isATattooArtist: result[0].isATattooArtist, name: result[0].name, email: result[0].email, description: result[0].description, photoURL: result[0].photo, auth: true, token: token});
         
 
 
