@@ -26,9 +26,10 @@ export default function Login({navigation}) {
         }
       })
       .then((responseText) => {
-        setMessage(responseText);
-        setData(JSON.parse(responseText));
-        navigation.navigate('HomeScreen')
+        navigation.navigate('Home',
+        {
+          user: JSON.parse(responseText)
+        })
       })
       .catch((error) => {
         console.error(error.message);
@@ -39,7 +40,6 @@ export default function Login({navigation}) {
 
   return (
     <ScrollView>
-      <Text>{data.email}</Text>
       <View>
         <Text>User</Text>
         <TextInput placeholder="Username" onChangeText={(e) => setEmail(e)} />
