@@ -3,12 +3,12 @@ import {View, ScrollView, TextInput, Text, Button} from 'react-native';
 import {useState} from 'react';
 
 export default function Login({navigation}) {
-  const [message, setMessage] = useState('Nada');
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [data, setData] = useState('');
 
-  function connectToServer() {
+
+  function LoginInServer() {
     const url = 'http://192.168.1.87:3000/login';
 
     const requestOption = {
@@ -36,6 +36,9 @@ export default function Login({navigation}) {
       });
   }
 
+  function goToSignUpPage(){
+    navigation.navigate('SignUp');
+  }
   
 
   return (
@@ -50,7 +53,8 @@ export default function Login({navigation}) {
         <TextInput placeholder="Password" onChangeText={(e) => setPassword(e)} />
       </View>
 
-      <Button title="Connect" onPress={connectToServer} />
+      <Button title="Connect" onPress={LoginInServer} />
+      <Button title="SignUp" onPress={goToSignUpPage}/>
     </ScrollView>
   );
 }
