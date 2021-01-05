@@ -9,7 +9,7 @@ export default function Login({navigation}) {
 
 
   function LoginInServer() {
-    const url = 'http://192.168.1.87:3000/login';
+    const URL = 'http://192.168.1.87:3000/login';
 
     const requestOption = {
       method: 'POST',
@@ -17,7 +17,7 @@ export default function Login({navigation}) {
       body: JSON.stringify({email: email, password: password})
     }
 
-    fetch(url, requestOption)
+    fetch(URL, requestOption)
       .then((response) => {
         if (response.status === 200) {
           return response.text();

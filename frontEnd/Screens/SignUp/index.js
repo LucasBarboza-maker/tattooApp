@@ -4,12 +4,51 @@ import {useState} from 'react'
 
 export default function SignUp(){
 
-    const [user, setUser] = useState({name:'', password:'', email:'', description:'', isATattooArtist: false, PhotoURL: ''});
+    const [user, setUser] = useState({name:'', password:'', email:'', description:'', PhotoURL: ''});
+    
+    const [isATattooArtist, setIsATattooArtist] = useState(true);
 
+    const [message, setMessage] = useState('');
+    
+    function toggleSwitch(){
+        setIsATattooArtist(previousState => !previousState);
+    }
+
+    function signUp(){
+
+        const URL = 'http://192.168.1.87:3000/signUp';
+
+        const requestOptions = {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({name:user.name, password:user.password, description:user.description, email:user.email, isATattooArtist: isATattooArtist, photo: user.photoURL})
+        }
+
+        setMessage(requestOptions.body);
+
+        fetch(URL, requestOptions)
+        .then((response) => {
+            if (response.status === 200) {
+            return response.text();
+            } else {
+            throw new Error('Something is wrong');
+            }
+        })
+        .then((responseText) => {
+            setMessage(responseText);
+        })
+        .catch((error) => {
+            console.error(error.message);
+        });
+
+
+
+    }
 
 
     return(
     <View>
+        <Text>{message}</Text>
         <Text>SIGN UP</Text>
         <Text>{user.name}, {user.email}, {user.password}, {user.description}, {user.photoURL}</Text>
         <Text>Name</Text>
@@ -23,14 +62,15 @@ export default function SignUp(){
         <Text>Are you a Tattoo artist?</Text>
         <Switch
         trackColor={{ false: "#767577", true: "#81b0ff" }}
-        //thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+        thumbColor={!isATattooArtist ? "#f4f3f4" : "#f4f3f4"}
         ios_backgroundColor="#3e3e3e"
-        //onValueChange={toggleSwitch}
-       // value={isEnabled}
+        onValueChange={toggleSwitch}
+        value={!isATattooArtist}
       />
         <Text>Photo</Text>
         <TextInput placeholder="Photo" onChangeText={e => setUser({...user, photoURL: e})}></TextInput>
 
+        <Button title="SingUP" onPress={signUp}/>
     </View>
     )
 
