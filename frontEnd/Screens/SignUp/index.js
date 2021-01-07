@@ -21,7 +21,11 @@ export default function SignUp(){
         const requestOptions = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({name:user.name, password:user.password, description:user.description, email:user.email, isATattooArtist: isATattooArtist, photo: user.photoURL})
+            body: JSON.stringify({
+                 name:user.name, password:user.password,
+                 description:user.description,
+                email:user.email, isATattooArtist: isATattooArtist,
+                photo: user.photoURL})
         }
 
         setMessage(requestOptions.body);

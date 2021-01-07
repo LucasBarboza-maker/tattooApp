@@ -17,7 +17,7 @@ ConfigProfileDAO.prototype.returnUser = async function(user, callback){
 }
 
 ConfigProfileDAO.prototype.returnAddress = async function(user, callback){
-    await this._connection.query("select * from address whe idUser = ?",user.idUser ,callback);
+    await this._connection.query("select * from address where idUser = ?",user.idUser ,callback);
 }
 
 ConfigProfileDAO.prototype.insertAddress = async function(address, callback){

@@ -19,7 +19,8 @@ module.exports.configProfile = function(application, req, res){
 
 module.exports.returnProfile = function(application, req, res){
 
-    var user = req.body;
+    var user = req.params;
+    console.log('O id é '+ user.idUser);
 
     var connection = application.config.dbConnection();
     var profileModel = new application.app.models.ProfileDAO(connection);

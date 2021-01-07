@@ -6,9 +6,9 @@ module.exports = function(application){
         application.app.controllers.profile.configProfile(application, req, res);
     });
 
-    application.get("/profile/:id", verifyJWT, function(req, res){
+    application.get("/profile/:idUser", verifyJWT, function(req, res){
 
-        application.app.controllers.profile.visitProfile(application, req, res);
+        application.app.controllers.profile.returnProfile(application, req, res);
 
     });
 
