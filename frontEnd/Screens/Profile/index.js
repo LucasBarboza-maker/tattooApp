@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {useState,useEffect} from 'react';
+import {Div} from './style.js'
 
 export default function profile({route, navigation}){
 

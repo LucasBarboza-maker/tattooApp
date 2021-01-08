@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, ScrollView, TextInput, Text, Button} from 'react-native';
+import {View, Button} from 'react-native';
 import {useState} from 'react';
+import {Form, Div, Text, TextInput} from './style'
 
 export default function Login({navigation}) {
 
@@ -42,19 +43,21 @@ export default function Login({navigation}) {
   
 
   return (
-    <ScrollView>
-      <View>
-        <Text>User</Text>
-        <TextInput placeholder="Username" onChangeText={(e) => setEmail(e)} />
-      </View>
+    <Form>
+      <Div>
+        <View>
+          <Text>User</Text>
+          <TextInput placeholder="Username" onChangeText={(e) => setEmail(e)} />
+        </View>
 
-      <View>
-        <Text>Password</Text>
-        <TextInput placeholder="Password" onChangeText={(e) => setPassword(e)} />
-      </View>
+        <View>
+          <Text>Password</Text>
+          <TextInput placeholder="Password" onChangeText={(e) => setPassword(e)} />
+        </View>
+      </Div>
 
       <Button title="Connect" onPress={LoginInServer} />
       <Button title="SignUp" onPress={goToSignUpPage}/>
-    </ScrollView>
+    </Form>
   );
 }
