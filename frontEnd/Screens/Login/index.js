@@ -1,7 +1,8 @@
 import React from 'react';
-import {View, Button} from 'react-native';
+import {View} from 'react-native';
+import Button from '../globalUtils/button';
 import {useState} from 'react';
-import {Form, Div, Text, TextInput} from './style'
+import {Form, Div, Text, TextInput, Title} from './style'
 
 export default function Login({navigation}) {
 
@@ -43,21 +44,24 @@ export default function Login({navigation}) {
   
 
   return (
-    <Form>
-      <Div>
-        <View>
-          <Text>User</Text>
-          <TextInput placeholder="Username" onChangeText={(e) => setEmail(e)} />
-        </View>
+      <Form>
+        <Div>
+          <Title>
+            TattooApp
+          </Title>
+          <View>
+            <Text>Email</Text>
+            <TextInput placeholder="Email" onChangeText={(e) => setEmail(e)} />
+          </View>
 
-        <View>
-          <Text>Password</Text>
-          <TextInput placeholder="Password" onChangeText={(e) => setPassword(e)} />
-        </View>
-      </Div>
+          <View>
+            <Text>Password</Text>
+            <TextInput placeholder="Password" onChangeText={(e) => setPassword(e)} />
+          </View>
+        </Div>
 
-      <Button title="Connect" onPress={LoginInServer} />
-      <Button title="SignUp" onPress={goToSignUpPage}/>
-    </Form>
+        <Button text="Login" onPress={LoginInServer} />
+        <Button text="SignUp" onPress={goToSignUpPage}/>
+      </Form>
   );
 }
