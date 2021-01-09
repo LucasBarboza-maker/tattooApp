@@ -4,7 +4,7 @@ export const Div = styled.View`
 
     flex:1;
     align-items:center;
-    margin-top:130%;
+    margin-top:115%;
     height:100%;
 
 `;
