@@ -12,7 +12,7 @@ export default function SignUp({navigation}){
 
     const [message, setMessage] = useState('');
 
-    const [passwordCheckMessage, setPasswordCheckMessage] = useState('Password is:');
+    const [passwordCheckMessage, setPasswordCheckMessage] = useState('');
 
     function toggleSwitch(){
         setIsATattooArtist(previousState => !previousState);
@@ -26,10 +26,11 @@ export default function SignUp({navigation}){
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                 name:user.name, password:user.password,
-                 description:user.description,
-                email:user.email, isATattooArtist: isATattooArtist,
-                photo: user.photoURL})
+                name:user.name,
+                password:user.password,
+                email:user.email,
+                isATattooArtist: isATattooArtist,
+            })
         }
 
         setMessage(requestOptions.body);
@@ -56,9 +57,9 @@ export default function SignUp({navigation}){
 
     function confirmPassword(e){
         if(e == user.password){
-            setPasswordCheckMessage('The Password is: CORRECT');
+            setPasswordCheckMessage('CORRECT');
         }else{
-            setPasswordCheckMessage('The Password is: WRONG');
+            setPasswordCheckMessage('WRONG');
         }
     }
 
@@ -67,16 +68,16 @@ export default function SignUp({navigation}){
     <Form>
         <Div>
             <Title>SIGN UP</Title>
-            <Text>Name</Text>
+            <Text>Full Name</Text>
             <TextInput placeholder="Name" onChangeText={ e => setUser({...user, name: e})}></TextInput>
+            <Text>Email</Text>
+            <TextInput placeholder="Email" onChangeText={e => setUser({...user, email: e})}></TextInput>
             <Text>Password</Text>
             <TextInput placeholder="Password" onChangeText={e => setUser({...user, password: e})}></TextInput>
             <Text>Confirm Password</Text>
             <TextInput placeholder="Password" onChangeText={e => confirmPassword(e)}></TextInput>
-            <Text>{passwordCheckMessage}</Text>
-            <Text>Email</Text>
-            <TextInput placeholder="Email" onChangeText={e => setUser({...user, email: e})}></TextInput>
-            <Text>Are you a Tattoo artist?</Text>
+            <Text>The password is:{passwordCheckMessage}</Text>
+           <Text>Are you a Tattoo artist?</Text>
             <Switch style={{marginRight:'-3%'}}
             trackColor={{ false: "#767577", true: "#81b0ff" }}
             thumbColor={!isATattooArtist ? "#f4f3f4" : "#f4f3f4"}

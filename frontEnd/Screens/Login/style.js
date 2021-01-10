@@ -4,7 +4,7 @@ export const Div = styled.View`
 
     flex:1;
     align-items:center;
-    margin-top:115%;
+    margin-top:50%;
     height:100%;
 
 `;
@@ -34,4 +34,5 @@ export const Title = styled.Text`
 
     font-size:50px;
     text-align:center;
+    color:white;
 `;

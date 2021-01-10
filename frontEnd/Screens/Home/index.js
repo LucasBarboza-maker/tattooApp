@@ -1,6 +1,6 @@
-import React from 'react'
-import {View, Text, Button} from 'react-native'
-import {useState, useEffect} from 'react'
+import React from 'react';
+import {useState, useEffect} from 'react';
+import {SearchBox, Div, CardDiv, UserName, Photo} from '../Home/style.js';
 
 
 export default function Home({route, navigation}){
@@ -48,11 +48,18 @@ export default function Home({route, navigation}){
     }
 
 
+    function profileCard(user){
+            return(
+            <CardDiv key={user.IdUser}>
+                <Photo/>
+                <UserName>{user.name}</UserName>
+            </CardDiv>
+            );
+    }
 
     return(
-    <View>
-        <Text>
-            {data.map(user => <View key={user.id}><Button onPress={() => goToProfile(user)} title={user.name}/></View>)}
-        </Text>
-    </View>);
+    <Div>
+        <SearchBox/>
+        {data.map(user => profileCard(user))}
+    </Div>);
 }
