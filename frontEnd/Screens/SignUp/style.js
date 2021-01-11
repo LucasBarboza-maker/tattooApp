@@ -1,7 +1,6 @@
 import styled from 'styled-components/native';
 
 export const Div = styled.View`
-
     flex:1;
     align-items:center;
     margin-top:25%;
@@ -12,7 +11,7 @@ export const Div = styled.View`
 
 export const Form = styled.ScrollView`
     
-    background-color: #4B4B4B;
+    background-color: #44616A;
     
 `;
 

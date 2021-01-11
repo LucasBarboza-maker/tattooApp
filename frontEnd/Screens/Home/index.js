@@ -1,5 +1,6 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
+import {ScrollView} from 'react-native';
 import {SearchBox, Div, CardDiv, UserName, Photo} from '../Home/style.js';
 
 
@@ -60,6 +61,8 @@ export default function Home({route, navigation}){
     return(
     <Div>
         <SearchBox/>
+        <ScrollView>
         {data.map(user => profileCard(user))}
+        </ScrollView>
     </Div>);
 }

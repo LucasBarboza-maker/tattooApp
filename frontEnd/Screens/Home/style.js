@@ -12,37 +12,41 @@ export const SearchBox = styled.TextInput`
     height:40px;
     font-size:20px;
     width:80%;
+    background-color:white;
     border-color: gray;
 `;
 
 export const Div = styled.View`
-    
+    height:100%;
+    background-color:#44616A;
+
 `;
 
 export const CardDiv = styled.TouchableOpacity`
-    width:90%;
-    height:20%;
-    margin-top:10px;
-    margin-left:4.5%;
-    background-color:#7E6F6F;
-    flex-direction:row;
-    
+    width:100%;
+    height:250px;
+    margin-top:2%;
+    background-color:#6F7B7E;
+    flex:1;
+    align-items:center;
+    border: 2px #3C474A;
 `;
 
 export const Photo = styled.View`
-    width:30%;
-    height:90%;
+    width:150px;
+    height:150px;
     margin-top:5px;
-    margin-left:5px;
     background-color:red;
+    border:2px #3C474A;
 `;
 
 export const UserName = styled.Text`
-    width:50%;
-    margin-top:11%;
-    text-align:left;
-    font-size:20px;
-    margin-left:2%;
+    width:95%;
+    margin-top:5%;
+    text-align:center;
+    font-size:25px;
+    color:white;
+    font-weight:bold;
 `;
 
 export const Description = styled.Text`

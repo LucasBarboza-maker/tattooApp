@@ -11,7 +11,7 @@ export const Div = styled.View`
 
 
 export const Form = styled.ScrollView`
-    background-color: #4B4B4B;
+    background-color: #44616A;
     
 `;
 
