@@ -1,6 +1,6 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import {ScrollView} from 'react-native';
+import {ScrollView, Button} from 'react-native';
 import {SearchBox, Div, CardDiv, UserName, Photo} from '../Home/style.js';
 
 
@@ -8,16 +8,20 @@ export default function Home({route, navigation}){
 
     const {user} = route.params;
     const [data, setData] = useState([]);
+    const [searchBoxValue, setSearchBoxValue] = useState('undefined');
 
+    
     useEffect(() => {
-        const URL = 'http://192.168.1.87:3000/';
+        setData([]);
+        const URL = 'http://192.168.1.87:3000/search';
 
         const requestOption = {
-          method: 'GET',
+          method: 'POST',
           headers: {
               'Content-Type': 'application/json',
               'x-acess-token': user.token
             },
+         body: JSON.stringify({name: searchBoxValue})
         }
 
         fetch(URL, requestOption)
@@ -36,7 +40,7 @@ export default function Home({route, navigation}){
             console.error(error.message);
           });
           
-    }, [])
+    }, [searchBoxValue]);
 
 
     function goToProfile(userInfo){
@@ -51,7 +55,7 @@ export default function Home({route, navigation}){
 
     function profileCard(user){
             return(
-            <CardDiv key={user.IdUser}>
+            <CardDiv key={user.IdUser} onPress={(user) => goToProfile(user)}>
                 <Photo/>
                 <UserName>{user.name}</UserName>
             </CardDiv>
@@ -60,9 +64,10 @@ export default function Home({route, navigation}){
 
     return(
     <Div>
-        <SearchBox/>
-        <ScrollView>
-        {data.map(user => profileCard(user))}
-        </ScrollView>
+        <SearchBox onChangeText={(e) => setSearchBoxValue(e)}/>
+            <Button title="Submit"/>
+            <ScrollView>
+            {data.map(user => profileCard(user))}
+            </ScrollView>
     </Div>);
 }
