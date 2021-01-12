@@ -11,7 +11,7 @@ export default function profile({route, navigation}){
 
     useEffect(() =>{
 
-        const URL = `http://192.168.1.87:3000/profile/${userInfo.IdUser}`;
+        const URL = `http://192.168.1.87:3000/profile/${userInfo.idUser}`;
 
         const requestOptions = {
             method: 'GET',

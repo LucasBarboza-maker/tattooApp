@@ -1,19 +1,32 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import {ScrollView, Button} from 'react-native';
-import {SearchBox, Div, CardDiv, UserName, Photo} from '../Home/style.js';
+import {ScrollView, Button, View} from 'react-native';
+import ButtonIcon from '../globalUtils/buttonIcon'
+import {SearchBox, Div, CardDiv, UserName, Photo, Header} from '../Home/style.js';
 
 
 export default function Home({route, navigation}){
 
     const {user} = route.params;
     const [data, setData] = useState([]);
-    const [searchBoxValue, setSearchBoxValue] = useState('undefined');
+    const [searchBoxValue, setSearchBoxValue] = useState('');
 
     
     useEffect(() => {
+
+        searchUsers();
+
+    }, [searchBoxValue]);
+
+    function searchUsers(){
+
         setData([]);
+
+        if(searchBoxValue === ''){
+            return;
+        }
         const URL = 'http://192.168.1.87:3000/search';
+
 
         const requestOption = {
           method: 'POST',
@@ -21,7 +34,7 @@ export default function Home({route, navigation}){
               'Content-Type': 'application/json',
               'x-acess-token': user.token
             },
-         body: JSON.stringify({name: searchBoxValue})
+          body: JSON.stringify({name: searchBoxValue})
         }
 
         fetch(URL, requestOption)
@@ -40,8 +53,7 @@ export default function Home({route, navigation}){
             console.error(error.message);
           });
           
-    }, [searchBoxValue]);
-
+    }
 
     function goToProfile(userInfo){
         navigation.navigate('Profile',
@@ -55,17 +67,28 @@ export default function Home({route, navigation}){
 
     function profileCard(user){
             return(
-            <CardDiv key={user.IdUser} onPress={(user) => goToProfile(user)}>
+            <CardDiv key={user.idUser} onPress={() => goToProfile(user)}>
                 <Photo/>
                 <UserName>{user.name}</UserName>
             </CardDiv>
             );
     }
 
+    function myProfile(user){
+
+        goToProfile(user);
+
+    }
+
     return(
     <Div>
-        <SearchBox onChangeText={(e) => setSearchBoxValue(e)}/>
-            <Button title="Submit"/>
+        <View style={{flexDirection:'row', alignSelf:'center', marginTop:20}}>
+            <ButtonIcon text="Profile" width='50%' height='100%' onPress={() => myProfile(user)}/>
+        </View>
+        <View style={{flexDirection:'row'}}>
+            <SearchBox onChangeText={(e) => setSearchBoxValue(e)}/>
+            <ButtonIcon text="Submit" width='23%' onPress={searchUsers}/>
+        </View>    
             <ScrollView>
             {data.map(user => profileCard(user))}
             </ScrollView>

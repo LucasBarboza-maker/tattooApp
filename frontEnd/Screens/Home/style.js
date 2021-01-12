@@ -6,12 +6,20 @@ export const DivSearchBox = styled.View`
 
 `;
 
+export const Header = styled.View`
+    background-color:#597F8C;
+    border:2px black;
+    margin:0.5px;
+    width:22%;
+    height:70px;
+`;
+
 export const SearchBox = styled.TextInput`
     margin: 10px;
     border: 2px;
     height:40px;
     font-size:20px;
-    width:80%;
+    width:70%;
     background-color:white;
     border-color: gray;
 `;
