@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {useState,useEffect} from 'react';
-import {Background, Photo, Title, DivHeader, Div, Description} from './style'
+import {Background, Photo, Title, DivHeader, Div, Description, GalleryPhoto, DivGallery, AddressDiv} from './style'
 
 export default function profile({route, navigation}){
 
@@ -51,10 +51,22 @@ export default function profile({route, navigation}){
 
             <Div>
                 <Title>Gallery</Title>
+                <DivGallery>
+                    <GalleryPhoto></GalleryPhoto> 
+                    <GalleryPhoto></GalleryPhoto>
+                    <GalleryPhoto></GalleryPhoto>
+                </DivGallery>
+
+                <DivGallery>
+                    <GalleryPhoto></GalleryPhoto> 
+                    <GalleryPhoto></GalleryPhoto>
+                    <GalleryPhoto></GalleryPhoto>
+                </DivGallery>
             </Div>
 
             <Div>
                 <Title>Address</Title>
+                <AddressDiv></AddressDiv>
             </Div>
 
         </Background>
