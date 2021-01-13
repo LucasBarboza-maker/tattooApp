@@ -1,13 +1,13 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {useState,useEffect} from 'react';
-import {Div} from './style.js'
+import {Background, Photo, Title, DivHeader, Div, Description} from './style'
 
 export default function profile({route, navigation}){
 
    const {userInfo, user} = route.params;
    
-   const [data, setData] = useState('');
+   const [data, setData] = useState([{}]);
 
     useEffect(() =>{
 
@@ -30,7 +30,7 @@ export default function profile({route, navigation}){
             }
         })
         .then((response) => {
-            setData(response);
+            setData(JSON.parse(response));
         })
         .catch((error) => {
             console.error(error.message);
@@ -38,8 +38,25 @@ export default function profile({route, navigation}){
 
 
     return(
-        <View>
-            <Text>{data}</Text>
-        </View>
+        <Background>
+            <DivHeader>
+                <Photo></Photo>
+                <Title>{data[0].name}</Title>
+            </DivHeader>
+
+            <Div>
+                <Title>Description</Title>
+                <Description>{data[0].description}</Description>
+            </Div>
+
+            <Div>
+                <Title>Gallery</Title>
+            </Div>
+
+            <Div>
+                <Title>Address</Title>
+            </Div>
+
+        </Background>
     );
 }
