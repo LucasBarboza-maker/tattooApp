@@ -5,6 +5,7 @@ var expressValidator = require('express-validator');
 require("dotenv-safe").config();
 
 var app = express();
+
 app.set('view engine', 'ejs');
 app.set('views', './app/views');
 
