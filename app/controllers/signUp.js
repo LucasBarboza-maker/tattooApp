@@ -1,5 +1,7 @@
 module.exports.signUp = function(application,req, res){
+   
     var signInfo = req.body;
+    
     req.assert('name',"name can't be empty").notEmpty();
 
     var errors = req.validationErrors();
