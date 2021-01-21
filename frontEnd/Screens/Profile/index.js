@@ -7,7 +7,7 @@ import DocumentPicker from 'react-native-document-picker';
 export default function profile({route, navigation}){
 
    const {userInfo, user} = route.params;
-   const [photo, setPhoto] = useState([]);
+   const [photo, setPhoto] = useState(null);
    const [data, setData] = useState([{}]);
 
     useEffect(() =>{
@@ -38,13 +38,59 @@ export default function profile({route, navigation}){
         })},[])
 
     async function chosePhoto(){
-        const chosenPhoto = await DocumentPicker.pick({
-            type: [DocumentPicker.types.images],
-        });
 
-        setPhoto(chosenPhoto);
+        try{
+            const res = await DocumentPicker.pick({
+
+                type: [DocumentPicker.types.allFiles],
+
+            });
+
+            alert('res : ' + JSON.stringify(res));
+            setPhoto(res);
+        }catch(err){
+            setPhoto(null);
+
+            if(DocumentPicker.isCancel(err)){
+                alert('Canceled');
+            }else{
+                alert('Unknown Error: ' + JSON.stringify(err));
+                throw err;
+            }
+        }
 
     }
+
+    let uploadImage = async () => {
+
+        if(photo != null){
+            
+            const fileToUpload = photo;
+            const data = new FormData();
+            data.append('imageUpload',fileToUpload)
+            alert(JSON.stringify(data));
+            let res = await fetch(
+                
+                `http://192.168.1.87:3000/upload`,
+                
+                {
+                    method: 'POST',
+                    body: data,
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    },
+                }
+            );
+            let responseJson = await res.json();
+
+            if(responseJson.status == 1){
+                alert('Upload Successful');
+            }
+        }else{
+            alert('Please Select File first');
+        }
+    };
+
 
     return(
         <Background>
@@ -60,8 +106,9 @@ export default function profile({route, navigation}){
 
             <Div>
                 <Title>Gallery</Title>
-                <Button title="Upload Photos" onPress={() => chosePhoto()}></Button>
-                <Text>Chosen Photo: {"\n"+photo.name}</Text>
+                <Button title="Chose Photo" onPress={chosePhoto}></Button>
+                <Button title="Upload Photo" onPress={uploadImage}></Button>
+               
                 <DivGallery>
                     <GalleryPhoto></GalleryPhoto> 
                     <GalleryPhoto></GalleryPhoto>

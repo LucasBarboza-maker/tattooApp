@@ -1,14 +1,13 @@
 const app = require("../../config/server")
 
-var multer = require('multer');
-var uuid = require('uuid').v4;
-
-const upload = multer({dest:'uploads/'});
 
 module.exports = function(application){
 
-    application.post('upload', upload.single('imageUpload'), (req, res) =>{
-        return res.json({status: 'ok'})
+    application.post('/upload',(req, res) =>{
+        console.log(JSON.stringify(req.body.photo)) // form fields
+        console.log(req.photo) // form files
+        console.log(req.file) // form files
+        res.send(req.body.photo);
     });
 
 }
