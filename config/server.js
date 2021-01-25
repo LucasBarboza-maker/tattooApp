@@ -15,25 +15,7 @@ app.use(express.static('./app/public'));
 app.use(express.urlencoded({extended: true}));
 app.use(expressValidator());
 
-var storage = multer.diskStorage({
-    destination: './public/users',
-    filename: function (req, file, cb) {
-        switch (file.mimetype) {
-            case 'image/jpeg':
-                ext = '.jpeg';
-                break;
-            case 'image/png':
-                ext = '.png';
-                break;
-        }
-        cb(null, file.originalname + ext);
-    }
-});
 
-
-var upload = multer({storage: storage});
-
-app.use(upload.single('imageUpload'));
 
 app.use(express.json())
 

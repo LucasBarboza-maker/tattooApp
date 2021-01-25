@@ -77,7 +77,8 @@ export default function profile({route, navigation}){
                     method: 'POST',
                     body: data,
                     headers: {
-                        'Content-Type': 'multipart/form-data'
+                        'Content-Type': 'multipart/form-data',
+                        'Path':'uploads/oioi'
                     },
                 }
             );
