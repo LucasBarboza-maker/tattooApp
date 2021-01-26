@@ -32,10 +32,7 @@ module.exports = function(application){
     application.use(upload.single('imageUpload'));
 
     application.post('/upload',(req, res) =>{
-        console.log(JSON.stringify(req.body.photo)) // form fields
-        console.log(req.photo) // form files
-        console.log(req.file) // form files
-        res.send(req.body.photo);
+       application.app.controllers.upload.upload(application,req,res);
     });
 
 }

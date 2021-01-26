@@ -66,19 +66,19 @@ export default function profile({route, navigation}){
         if(photo != null){
             
             const fileToUpload = photo;
-            const data = new FormData();
-            data.append('imageUpload',fileToUpload)
-            alert(JSON.stringify(data));
+            const dataToConvert = new FormData();
+            dataToConvert.append('imageUpload',fileToUpload);
+            dataToConvert.append('IdUser', data[0].IdUser);
             let res = await fetch(
                 
                 `http://192.168.1.87:3000/upload`,
                 
                 {
                     method: 'POST',
-                    body: data,
+                    body: dataToConvert,
                     headers: {
                         'Content-Type': 'multipart/form-data',
-                        'Path':'uploads/oioi'
+                        'Path':'uploads/'+data[0].IdUser+'/profilePhoto'
                     },
                 }
             );

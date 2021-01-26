@@ -30,4 +30,10 @@ module.exports = function(application){
     
     });
 
+    application.get("profile/profilePhoto", verifyJWT, function(req, res){
+        
+        application.app.controllers.profile.returnPhoto(application, req, res);
+
+    });
+
 }

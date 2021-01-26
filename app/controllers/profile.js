@@ -53,3 +53,8 @@ module.exports.deleteProfile = function(application, req, res){
         res.status(200).send(result);
     })
 }
+
+module.exports.returnPhoto = function(application, req, res){
+
+
+}
