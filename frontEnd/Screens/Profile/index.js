@@ -69,6 +69,7 @@ export default function profile({route, navigation}){
             const dataToConvert = new FormData();
             dataToConvert.append('imageUpload',fileToUpload);
             dataToConvert.append('IdUser', data[0].IdUser);
+            alert(fileToUpload.name);
             let res = await fetch(
                 
                 `http://192.168.1.87:3000/upload`,
@@ -78,7 +79,7 @@ export default function profile({route, navigation}){
                     body: dataToConvert,
                     headers: {
                         'Content-Type': 'multipart/form-data',
-                        'Path':'uploads/'+data[0].IdUser+'/profilePhoto'
+                        'Path':'uploads/profilePhotos/'+fileToUpload.name
                     },
                 }
             );

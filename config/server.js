@@ -14,6 +14,8 @@ app.set('views', './app/views');
 app.use(express.static('./app/public'));
 app.use(express.urlencoded({extended: true}));
 app.use(expressValidator());
+app.use(express.static('uploads'));
+app.use('/15/profilePhotos', express.static('15/profilePhotos'));
 
 
 

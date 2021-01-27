@@ -5,14 +5,7 @@ var multer = require('multer');
 module.exports = function(application){
 
     var storage = multer.diskStorage({
-        destination: function(req, file, cb){
-            mkdirp(req.headers.path, function(err) { 
-                if(err){
-                    return;
-                }
-             });
-             cb(null, req.headers.path);
-        },
+        destination: 'uploads/profilePhotos/',
         filename: function (req, file, cb) {
             switch (file.mimetype) {
                 case 'image/jpeg':
@@ -22,7 +15,7 @@ module.exports = function(application){
                     ext = '.png';
                     break;
             }
-            cb(null, file.originalname + ext);
+            cb(null, file.originalname);
         }
     });
     
